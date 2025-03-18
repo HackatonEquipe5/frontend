@@ -49,6 +49,10 @@ export default function RegisterPage() {
                 <span>S'inscrire</span>
             </div>
 
+            <h1 className="text-3xl font-bold mb-6 text-center bg-clip-text text-transparent bg-gradient-to-r from-[#f5e0c3] to-[#c49a6c]">
+                S'inscrire
+            </h1>
+
             <div className="flex items-center justify-center min-h-screen bg-[#3a2414] p-6">
                 <div className="max-w-sm w-full bg-[#4d3220] p-6 rounded-2xl shadow-lg">
                     <h1 className="text-3xl font-bold text-center text-white mb-6">Inscription</h1>

@@ -40,7 +40,7 @@ export default function UserProfilePage() {
     };
 
     return (
-        <div className="min-h-screen bg-[#3a2414] p-6">
+        <div>
             {user ? (
                 <>
             <div className="mb-4">
@@ -54,32 +54,35 @@ export default function UserProfilePage() {
             ) : (
                 <p className="text-white text-lg">Chargement du profil...</p>
             )}
+
+            <h1 className="text-3xl font-bold mb-6 text-center bg-clip-text text-transparent bg-gradient-to-r from-[#f5e0c3] to-[#c49a6c]">
+                Profil de l'utilisateur
+            </h1>
+
             <div className="flex items-center justify-center">
 
-            <div className="max-w-sm w-full bg-[#4d3220] p-6 rounded-2xl shadow-lg">
-                <h1 className="text-3xl font-bold text-center text-white mb-6">Profil de l'utilisateur</h1>
+                <div className="max-w-lg mx-auto bg-[#3a2414] min-w-3/5 p-6 rounded-2xl shadow-lg">
+                    {error && <p className="text-red-500 mb-4">{error}</p>}
 
-                {error && <p className="text-red-500 mb-4">{error}</p>}
+                    {user ? (
+                        <>
+                            <div className="mb-4">
+                                <p className="text-white text-lg">Nom : {user.firstName} {user.lastName}</p>
+                                <p className="text-white text-lg">Email : {user.email}</p>
+                            </div>
 
-                {user ? (
-                    <>
-                        <div className="mb-4">
-                            <p className="text-white text-lg">Nom : {user.firstName} {user.lastName}</p>
-                            <p className="text-white text-lg">Email : {user.email}</p>
-                        </div>
-
-                        <button
-                            onClick={handleDeleteUser}
-                            className="w-full py-2 mt-4 rounded-lg bg-red-600 hover:bg-red-700 text-white font-semibold transition"
-                        >
-                            Supprimer cet utilisateur
-                        </button>
-                    </>
-                ) : (
-                    <p className="text-white text-lg">Chargement du profil...</p>
-                )}
+                            <button
+                                onClick={handleDeleteUser}
+                                className="w-full py-2 mt-4 rounded-lg bg-red-600 hover:bg-red-700 text-white font-semibold transition"
+                            >
+                                Supprimer cet utilisateur
+                            </button>
+                        </>
+                    ) : (
+                        <p className="text-white text-lg">Chargement du profil...</p>
+                    )}
+                </div>
             </div>
-        </div>
         </div>
     );
 }

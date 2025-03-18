@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createDevice } from "@/api/deviceApi";
+import Link from "next/link";
 
 export default function CreateMachine() {
     const router = useRouter();
@@ -52,9 +53,19 @@ export default function CreateMachine() {
 
     return (
         <div>
-            <div className="max-w-lg mx-auto bg-[#3a2414] p-6 rounded-2xl shadow-lg">
-                <h1 className="text-2xl font-bold text-center">Créer une machine</h1>
+            <div className="mb-4">
+                <Link href="/">
+                    <span className="text-yellow-500">Accueil</span>
+                </Link>
+                <span className="mx-2">/</span>
+                <span>Créer une machine</span>
+            </div>
 
+            <h1 className="text-3xl font-bold mb-6 text-center bg-clip-text text-transparent bg-gradient-to-r from-[#f5e0c3] to-[#c49a6c]">
+                Créer une machine
+            </h1>
+
+            <div className="max-w-lg mx-auto bg-[#3a2414] p-6 rounded-2xl shadow-lg">
                 {/* Affichage de l'erreur */}
                 {error && (
                     <div className="text-red-500 text-center mb-4">{error}</div>

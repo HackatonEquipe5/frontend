@@ -59,10 +59,12 @@ export default function EditProfilePage() {
                 <span className="mx-2">/</span>
                 <span>Mon Compte</span>
             </div>
-        <div className="flex items-center justify-center min-h-screen bg-[#3a2414] p-6">
-            <div className="max-w-sm w-full bg-[#4d3220] p-6 rounded-2xl shadow-lg">
-                <h1 className="text-3xl font-bold text-center text-white mb-6">Modifier mon compte</h1>
 
+            <h1 className="text-3xl font-bold mb-6 text-center bg-clip-text text-transparent bg-gradient-to-r from-[#f5e0c3] to-[#c49a6c]">
+                Modifier mon compte
+            </h1>
+
+            <div className="max-w-lg mx-auto bg-[#3a2414] p-6 rounded-2xl shadow-lg">
                 {/* Formulaire de modification */}
                 <form onSubmit={handleUpdateProfile}>
                     {/* Champ Prénom */}
@@ -133,7 +135,6 @@ export default function EditProfilePage() {
                     <p>Cliquez ici pour vous <a href="/logout" className="text-red-600">déconnecter</a></p>
                 </div>
             </div>
-        </div>
         </div>
     );
 }

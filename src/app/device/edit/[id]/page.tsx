@@ -89,9 +89,11 @@ export default function EditMachine() {
                 <span>{name}</span>
             </div>
 
-            <div className="max-w-lg mx-auto bg-[#3a2414] p-6 rounded-2xl shadow-lg">
-                <h1 className="text-2xl font-bold text-center">Modifier la machine</h1>
+            <h1 className="text-3xl font-bold mb-6 text-center bg-clip-text text-transparent bg-gradient-to-r from-[#f5e0c3] to-[#c49a6c]">
+                Editer la machine
+            </h1>
 
+            <div className="max-w-lg mx-auto bg-[#3a2414] p-6 rounded-2xl shadow-lg">
                 {/* Nom */}
                 <label className="block mt-4">
                     <span className="text-gray-300">Nom de la machine :</span>

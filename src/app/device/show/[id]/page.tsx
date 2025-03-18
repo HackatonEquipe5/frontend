@@ -68,6 +68,10 @@ export default function MachineView() {
                 <span>{device.name}</span>
             </div>
 
+            <h1 className="text-3xl font-bold mb-6 text-center bg-clip-text text-transparent bg-gradient-to-r from-[#f5e0c3] to-[#c49a6c]">
+                {device.name}
+            </h1>
+
             <div className="max-w-2xl mx-auto bg-[#3a2414] p-6 rounded-2xl shadow-lg">
                 {/* Image + Nom */}
                 <div className="flex justify-between items-center">
