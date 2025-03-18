@@ -128,6 +128,32 @@ export async function updateDevice(id: string, device: UpdateDeviceModel): Promi
     }
 }
 
+export async function deleteDeviceById(id: string): Promise<Device> {
+    const jwtToken = localStorage.getItem("jwt_token");
+    if (!jwtToken) {
+        throw new Error("Token JWT manquant. Veuillez vous reconnecter.");
+    }
+
+    try {
+        const response = await fetch(`http://localhost:3000/api/connectobject/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${jwtToken}`,
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error("Failed to update device");
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error("Error removing device:", error);
+        throw error;
+    }
+}
+
 const convertToBase64 = (file: File): Promise<string> => {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();

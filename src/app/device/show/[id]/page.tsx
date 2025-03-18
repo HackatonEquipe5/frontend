@@ -3,16 +3,17 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
-import { fetchDeviceById } from "@/api/deviceApi";
+import { fetchDeviceById, deleteDeviceById } from "@/api/deviceApi";
 import Link from "next/link";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faHeart} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 export default function MachineView() {
     const router = useRouter();
     const { id } = useParams();
     const [device, setDevice] = useState<any>(null);
     const [loading, setLoading] = useState<boolean>(true);
+    const [isDeleting, setIsDeleting] = useState<boolean>(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -34,16 +35,27 @@ export default function MachineView() {
         fetchData();
     }, [id]);
 
+    const handleDelete = async () => {
+        if (!id) return;
+        if (!window.confirm("Êtes-vous sûr de vouloir supprimer cette machine ?")) return;
+
+        setIsDeleting(true);
+        try {
+            await deleteDeviceById(id as string);
+            router.push("/"); // Redirection après suppression
+        } catch (error) {
+            console.error("Erreur lors de la suppression de la machine", error);
+        } finally {
+            setIsDeleting(false);
+        }
+    };
+
     if (loading) {
-        return (
-            <div className="text-center text-gray-300">Chargement...</div>
-        );
+        return <div className="text-center text-gray-300">Chargement...</div>;
     }
 
     if (!device) {
-        return (
-            <div className="text-center text-red-500">Aucune donnée disponible pour cette machine.</div>
-        );
+        return <div className="text-center text-red-500">Aucune donnée disponible pour cette machine.</div>;
     }
 
     return (
@@ -53,60 +65,43 @@ export default function MachineView() {
                     <span className="text-yellow-500">Accueil</span>
                 </Link>
                 <span className="mx-2">/</span>
-                <span>{ device.name }</span>
+                <span>{device.name}</span>
             </div>
 
             <div className="max-w-2xl mx-auto bg-[#3a2414] p-6 rounded-2xl shadow-lg">
                 {/* Image + Nom */}
                 <div className="flex justify-between items-center">
                     <div className="flex items-center gap-4">
-                        <Image src={device.image ?? "/blank/device.webp"} alt={device.name} width={100} height={100} className="rounded-lg" />
+                        <Image
+                            src={device.image ?? "/blank/device.webp"}
+                            alt={device.name}
+                            width={100}
+                            height={100}
+                            className="rounded-lg"
+                        />
                         <div>
                             <h1 className="text-2xl font-bold">{device.name}</h1>
                         </div>
                     </div>
 
                     {device.isFavorite && (
-                        <p className="bg-yellow-500 rounded-2xl py-1 px-3"><FontAwesomeIcon icon={faHeart} className="text-red-500" /> Fait partie des favoris</p>
+                        <p className="bg-yellow-500 rounded-2xl py-1 px-3">
+                            <FontAwesomeIcon icon={faHeart} className="text-red-500" /> Fait partie des favoris
+                        </p>
                     )}
                 </div>
 
-                {/* location */}
+                {/* Localisation */}
                 <div className="mt-6">
                     <h2 className="text-lg font-semibold mb-2">Localisation :</h2>
-                    <p>
-                        {device.location}
-                    </p>
+                    <p>{device.location}</p>
                 </div>
 
-                {/* location */}
+                {/* ID de l'appareil */}
                 <div className="mt-6">
                     <h2 className="text-lg font-semibold mb-2">ID de l'appareil</h2>
-                    <p>
-                        {device.id_device}
-                    </p>
+                    <p>{device.id_device}</p>
                 </div>
-
-                {/* État de la machine
-                <div className="mt-6">
-                    <h2 className="text-lg font-semibold mb-2">État actuel :</h2>
-                    <div className={`inline-block px-4 py-2 rounded-full text-sm font-medium ${statusColors[status]}`}>
-                        {status}
-                    </div>
-                </div>
-
-                 Dernières actions
-                <div className="mt-6">
-                    <h2 className="text-lg font-semibold mb-2">Dernières actions :</h2>
-                    <ul className="space-y-2">
-                        {device.actions?.map((action: { id: number; text: string; time: string }) => (
-                            <li key={action.id} className="flex justify-between bg-[#4d3220] p-2 rounded-lg">
-                                <span>{action.text}</span>
-                                <span className="text-gray-300 text-sm">{action.time}</span>
-                            </li>
-                        ))}
-                    </ul>
-                </div>*/}
 
                 {/* Bouton Modifier */}
                 <button
@@ -116,6 +111,15 @@ export default function MachineView() {
                     Modifier
                 </button>
 
+                {/* Bouton Supprimer */}
+                <button
+                    onClick={handleDelete}
+                    className="mt-4 w-full flex items-center justify-center gap-2 cursor-pointer bg-red-600 hover:bg-red-700 text-white font-semibold py-2 rounded-lg transition"
+                    disabled={isDeleting}
+                >
+                    <FontAwesomeIcon icon={faTrash} />
+                    {isDeleting ? "Suppression..." : "Supprimer"}
+                </button>
             </div>
         </div>
     );
