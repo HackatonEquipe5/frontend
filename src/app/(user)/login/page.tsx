@@ -51,9 +51,8 @@ export default function LoginPage() {
                 Se connecter
             </h1>
 
-            <div className="flex items-center justify-center min-h-screen bg-[#3a2414] p-6">
+            <div className="flex items-center justify-center">
                 <div className="max-w-sm w-full bg-[#4d3220] p-6 rounded-2xl shadow-lg">
-                    <h1 className="text-3xl font-bold text-center text-white mb-6">Connexion</h1>
 
                     {successMessage && (
                         <p className="text-green-500 text-sm text-center mb-4">{successMessage}</p>
