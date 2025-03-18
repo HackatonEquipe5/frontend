@@ -1,8 +1,8 @@
-"use client";  // Cette directive assure que ce fichier est traité comme un Client Component
+"use client";
 
 import { useEffect, useState } from "react";
-import { useRouter, useParams } from "next/navigation";  // Importation de useParams
-import { fetchUserById, deleteUser, fetchCurrentUser } from "@/api/userApi";  // Assure-toi que ces fonctions existent
+import { useRouter, useParams } from "next/navigation";
+import { fetchUserById, deleteUser, fetchCurrentUser } from "@/api/userApi";
 import { toast } from "react-toastify";
 import Link from "next/link";
 

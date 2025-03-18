@@ -3,8 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "./header";
 import "../lib/fontawesome";
-import { Device, User } from "@/models";
-import Link from "next/link";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",

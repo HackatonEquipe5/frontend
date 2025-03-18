@@ -14,7 +14,6 @@ export default function EditProfilePage() {
     const [error, setError] = useState("");
 
     useEffect(() => {
-        // Récupérer les données de l'utilisateur au chargement de la page
         const fetchUserData = async () => {
             try {
                 const userData = await fetchCurrentUser();

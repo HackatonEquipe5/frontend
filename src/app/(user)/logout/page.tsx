@@ -7,10 +7,8 @@ export default function LogoutPage() {
     const router = useRouter();
 
     useEffect(() => {
-        // Supprime le token JWT du cache (localStorage)
         localStorage.removeItem("jwt_token");
 
-        // Redirige vers la page de connexion après la déconnexion
         router.push("/login");
     }, [router]);
 

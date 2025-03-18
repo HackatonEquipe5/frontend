@@ -7,14 +7,11 @@ export default function HomePage() {
     const router = useRouter();
 
     useEffect(() => {
-        // Vérifie si un token JWT est présent dans le cache
         const token = localStorage.getItem("jwt_token");
 
         if (token) {
-            // Si un token est trouvé, redirige vers le dashboard
             router.push("/dashboard");
         } else {
-            // Sinon, redirige vers la page de déconnexion
             router.push("/logout");
         }
     }, [router]);
