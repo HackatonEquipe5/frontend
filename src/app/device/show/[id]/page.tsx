@@ -92,7 +92,7 @@ export default function MachineView() {
                     </p>
                 </div>
 
-                {/* État de la machine */}
+                {/* État de la machine
                 <div className="mt-6">
                     <h2 className="text-lg font-semibold mb-2">État actuel :</h2>
                     <div className={`inline-block px-4 py-2 rounded-full text-sm font-medium ${statusColors[status]}`}>
@@ -100,7 +100,7 @@ export default function MachineView() {
                     </div>
                 </div>
 
-                {/* Dernières actions */}
+                 Dernières actions
                 <div className="mt-6">
                     <h2 className="text-lg font-semibold mb-2">Dernières actions :</h2>
                     <ul className="space-y-2">
@@ -111,7 +111,7 @@ export default function MachineView() {
                             </li>
                         ))}
                     </ul>
-                </div>
+                </div>*/}
 
                 {/* Bouton Modifier */}
                 <button
