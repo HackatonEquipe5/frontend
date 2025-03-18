@@ -12,6 +12,7 @@ export default function EditMachine() {
     const [name, setName] = useState("");
     const [location, setLocation] = useState("");
     const [isFavorite, setIsFavorite] = useState(false);
+    const [id_device, setId_device] = useState("");
     const [image, setImage] = useState<File | null>(null);
     const [imagePreview, setImagePreview] = useState("");
 
@@ -28,6 +29,7 @@ export default function EditMachine() {
                     setLocation(device.location);
                     setIsFavorite(device.isFavorite);
                     setImagePreview(device.image);
+                    setId_device(device.id_device);
                 } catch (err) {
                     console.error("Erreur lors de la récupération des données :", err);
                 }
@@ -58,6 +60,7 @@ export default function EditMachine() {
                 location,
                 isFavorite,
                 image: image ?? undefined,
+                id_device,
             };
 
             const updatedDevice = await updateDevice(id as string, updatedDeviceData);
@@ -117,6 +120,17 @@ export default function EditMachine() {
                         type="checkbox"
                         checked={isFavorite}
                         onChange={(e) => setIsFavorite(e.target.checked)}
+                        className="w-full p-2 mt-1 rounded bg-[#4d3220] text-white border border-gray-600 focus:border-yellow-500 focus:ring focus:ring-yellow-500/50"
+                    />
+                </label>
+
+                {/* ID device */}
+                <label className="block mt-4">
+                    <span className="text-gray-300">ID de l'appareil :</span>
+                    <input
+                        type="text"
+                        value={id_device}
+                        onChange={(e) => setId_device(e.target.value)}
                         className="w-full p-2 mt-1 rounded bg-[#4d3220] text-white border border-gray-600 focus:border-yellow-500 focus:ring focus:ring-yellow-500/50"
                     />
                 </label>

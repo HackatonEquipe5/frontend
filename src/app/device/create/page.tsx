@@ -2,17 +2,17 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { createDevice } from "@/api/deviceApi"; // Correct API import
+import { createDevice } from "@/api/deviceApi";
 
 export default function CreateMachine() {
     const router = useRouter();
     const [name, setName] = useState("");
-    const [location, setLocation] = useState(""); // Ajout du champ location
-    const [isFavorite, setIsFavorite] = useState(false); // Ajout du champ isFavorite
-    const [status, setStatus] = useState("Éteinte");
+    const [location, setLocation] = useState("");
+    const [isFavorite, setIsFavorite] = useState(false);
+    const [id_device, setIdDevice] = useState("");
     const [image, setImage] = useState<File | null>(null);
     const [imagePreview, setImagePreview] = useState("");
-    const [error, setError] = useState<string>(""); // State to handle errors
+    const [error, setError] = useState<string>("");
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files ? e.target.files[0] : null;
@@ -32,19 +32,17 @@ export default function CreateMachine() {
         e.preventDefault();
 
         // Validation basique du formulaire
-        if (!name || !location || !image) {
+        if (!name || !location || !image || !id_device) {
             setError("Veuillez remplir tous les champs.");
             return;
         }
 
         try {
-            const deviceData = { name, location, isFavorite, image };
+            const deviceData = { name, location, isFavorite, image, id_device };
 
-            // Envoi de la requête d'ajout à l'API via la fonction createDevice
             const createdDevice = await createDevice(deviceData);
 
             if (createdDevice) {
-                // Redirige vers la page du dashboard après une création réussie
                 router.push("/dashboard");
             }
         } catch (err: any) {
@@ -80,6 +78,27 @@ export default function CreateMachine() {
                         type="text"
                         value={location}
                         onChange={(e) => setLocation(e.target.value)}
+                        className="w-full p-2 mt-1 rounded bg-[#4d3220] text-white border border-gray-600 focus:border-yellow-500 focus:ring focus:ring-yellow-500/50"
+                    />
+                </label>
+
+                {/* ID device */}
+                <label className="block mt-4">
+                    <span className="text-gray-300">ID de l'appareil :</span>
+                    <input
+                        type="text"
+                        value={id_device}
+                        onChange={(e) => setIdDevice(e.target.value)}
+                        className="w-full p-2 mt-1 rounded bg-[#4d3220] text-white border border-gray-600 focus:border-yellow-500 focus:ring focus:ring-yellow-500/50"
+                    />
+                </label>
+
+                <label className="block mt-4">
+                    <span className="text-gray-300">Favori :</span>
+                    <input
+                        type="checkbox"
+                        checked={isFavorite}
+                        onChange={(e) => setIsFavorite(e.target.checked)}
                         className="w-full p-2 mt-1 rounded bg-[#4d3220] text-white border border-gray-600 focus:border-yellow-500 focus:ring focus:ring-yellow-500/50"
                     />
                 </label>

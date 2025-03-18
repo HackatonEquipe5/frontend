@@ -65,6 +65,7 @@ export async function createDevice(device: CreateDeviceModel): Promise<Device> {
             location: device.location,
             isFavorite: device.isFavorite,
             image: base64Image, // Image en base64
+            id_device: device.id_device,
         };
 
         const response = await fetch("http://localhost:3000/api/createconnectobject", {
@@ -104,6 +105,7 @@ export async function updateDevice(id: string, device: UpdateDeviceModel): Promi
             location: device.location,
             isFavorite: device.isFavorite,
             image: base64Image,
+            id_device: device.id_device,
         };
 
         const response = await fetch(`http://localhost:3000/api/connectobject/${id}`, {

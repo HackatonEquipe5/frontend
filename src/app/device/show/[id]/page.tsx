@@ -10,15 +10,13 @@ import {faHeart} from "@fortawesome/free-solid-svg-icons";
 
 export default function MachineView() {
     const router = useRouter();
-    const { id } = useParams();  // Utilisation de useParams pour récupérer l'ID de la machine
+    const { id } = useParams();
     const [device, setDevice] = useState<any>(null);
     const [loading, setLoading] = useState<boolean>(true);
 
-    // Utilisation de useEffect pour récupérer les données de la machine
     useEffect(() => {
         const fetchData = async () => {
             try {
-                // Vérifie si l'ID est valide avant d'effectuer l'appel
                 if (!id) {
                     console.error("Aucun ID de machine n'est spécifié.");
                     setLoading(false);
@@ -78,6 +76,14 @@ export default function MachineView() {
                     <h2 className="text-lg font-semibold mb-2">Localisation :</h2>
                     <p>
                         {device.location}
+                    </p>
+                </div>
+
+                {/* location */}
+                <div className="mt-6">
+                    <h2 className="text-lg font-semibold mb-2">ID de l'appareil</h2>
+                    <p>
+                        {device.id_device}
                     </p>
                 </div>
 

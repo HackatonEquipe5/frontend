@@ -6,6 +6,7 @@ export interface Device {
     image: string;
     location: string;
     isFavorite: boolean;
+    id_device: string;
 }
 
 export interface CreateDeviceModel {
@@ -13,6 +14,7 @@ export interface CreateDeviceModel {
     image: File;
     location: string;
     isFavorite: boolean;
+    id_device: string;
 }
 
 export interface UpdateDeviceModel {
@@ -20,6 +22,7 @@ export interface UpdateDeviceModel {
     image?: File;
     location: string;
     isFavorite: boolean;
+    id_device: string;
 }
 
 export interface User {

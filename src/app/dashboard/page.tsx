@@ -76,8 +76,8 @@ export default function Dashboard() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-5 col-span-3">
                     {devices.map((device) => (
                         <Link key={device._id} href={`/device/show/${device._id}`} className="group">
-                            <div className="bg-[#3a2414] p-4 rounded-2xl shadow-lg hover:scale-105 transition-transform cursor-pointer flex justify-center group-hover:bg-[#5a3c24]">
-                                <div className="grid grid-cols-2 gap-10">
+                            <div className="bg-[#3a2414] p-4 rounded-2xl shadow-lg hover:scale-105 h-full transition-transform cursor-pointer flex justify-center group-hover:bg-[#5a3c24]">
+                                <div className="grid items-center grid-cols-2 gap-10">
                                     <Image src={device.image ?? "/blank/device.webp"} alt={device.name} width={100} height={50} className="rounded-lg" />
                                     <div className="content-center">
                                         <h2 className="text-xl font-semibold mt-3 group-hover:text-yellow-400">{device.name}</h2>
@@ -101,9 +101,9 @@ export default function Dashboard() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-5 col-span-3">
                     {users.map((user, key) => (
                         <Link href={`/profile/${user._id}`} key={key}>
-                            <div className="bg-[#3a2414] p-4 rounded-2xl content-center shadow-lg hover:scale-105 transition-transform grid grid-cols-2 cursor-pointer">
+                            <div className="bg-[#3a2414] p-4 rounded-2xl content-center shadow-lg hover:scale-105 transition-transform grid grid-cols-3 gap-3 cursor-pointer">
                                 <Image src="/blank/user.webp" alt={user.firstName} width={100} height={50} className="rounded-lg" />
-                                <div className="content-center">
+                                <div className="content-center col-span-2">
                                     <h2 className="text-xl font-semibold mt-3">{user.firstName} {user.lastName}</h2>
                                     <p className="text-gray-300 text-sm">{user.email}</p>
                                 </div>
