@@ -81,7 +81,6 @@ export default function Dashboard() {
                                     <Image src={device.image ?? "/blank/device.webp"} alt={device.name} width={100} height={50} className="rounded-lg" />
                                     <div className="content-center">
                                         <h2 className="text-xl font-semibold mt-3 group-hover:text-yellow-400">{device.name}</h2>
-                                        <p className="text-gray-300 text-sm">Ajoutée le {device.dateAdded}</p>
                                     </div>
                                 </div>
                                 {device.isFavorite && (
@@ -107,7 +106,6 @@ export default function Dashboard() {
                                 <div className="content-center">
                                     <h2 className="text-xl font-semibold mt-3">{user.firstName} {user.lastName}</h2>
                                     <p className="text-gray-300 text-sm">{user.email}</p>
-                                    <p className="text-gray-300 text-sm">Ajoutée le </p>
                                 </div>
                             </div>
                         </Link>

@@ -12,16 +12,7 @@ export default function MachineView() {
     const router = useRouter();
     const { id } = useParams();  // Utilisation de useParams pour récupérer l'ID de la machine
     const [device, setDevice] = useState<any>(null);
-    const [status, setStatus] = useState<string>("");
     const [loading, setLoading] = useState<boolean>(true);
-
-    // Définition des couleurs selon l'état de la machine
-    const statusColors: { [key: string]: string } = {
-        "Éteinte": "bg-gray-500",
-        "En marche": "bg-green-500",
-        "Coule du café": "bg-orange-500",
-        "En maintenance": "bg-red-500",
-    };
 
     // Utilisation de useEffect pour récupérer les données de la machine
     useEffect(() => {
@@ -35,7 +26,6 @@ export default function MachineView() {
                 }
                 const device = await fetchDeviceById(id as string);
                 setDevice(device);
-                // setStatus(device.status);
                 setLoading(false);
             } catch (error) {
                 console.error("Erreur lors de la récupération des données de la machine", error);
@@ -75,7 +65,6 @@ export default function MachineView() {
                         <Image src={device.image ?? "/blank/device.webp"} alt={device.name} width={100} height={100} className="rounded-lg" />
                         <div>
                             <h1 className="text-2xl font-bold">{device.name}</h1>
-                            <p className="text-gray-300 text-sm">Ajoutée le {device.dateAdded}</p>
                         </div>
                     </div>
 

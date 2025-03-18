@@ -10,7 +10,6 @@ export default function EditMachine() {
     const router = useRouter();
     const [machine, setMachine] = useState<any | null>(null);
     const [name, setName] = useState("");
-    const [dateAdded, setDateAdded] = useState("");
     const [location, setLocation] = useState("");
     const [isFavorite, setIsFavorite] = useState(false);
     const [image, setImage] = useState<File | null>(null);
