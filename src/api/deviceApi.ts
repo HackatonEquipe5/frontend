@@ -1,7 +1,6 @@
 import {CreateDeviceModel, Device, UpdateDeviceModel} from "@/models";
 
 export async function fetchDevices(): Promise<Device[]> {
-    // Récupère le token JWT du localStorage
     const jwtToken = localStorage.getItem("jwt_token");
     if (!jwtToken) {
         throw new Error("Token JWT manquant. Veuillez vous reconnecter.");
@@ -28,7 +27,6 @@ export async function fetchDevices(): Promise<Device[]> {
 }
 
 export async function fetchDeviceById(id: string): Promise<Device> {
-    // Récupère le token JWT du localStorage
     const jwtToken = localStorage.getItem("jwt_token");
     if (!jwtToken) {
         throw new Error("Token JWT manquant. Veuillez vous reconnecter.");
@@ -54,14 +52,12 @@ export async function fetchDeviceById(id: string): Promise<Device> {
 }
 
 export async function createDevice(device: CreateDeviceModel): Promise<Device> {
-    // Récupère le token JWT du localStorage
     const jwtToken = localStorage.getItem("jwt_token");
     if (!jwtToken) {
         throw new Error("Token JWT manquant. Veuillez vous reconnecter.");
     }
 
     try {
-        // Convertir l'image en base64
         const base64Image = await convertToBase64(device.image);
 
         const deviceData = {
@@ -75,9 +71,9 @@ export async function createDevice(device: CreateDeviceModel): Promise<Device> {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${jwtToken}`, // Ajout du token dans les headers
+                "Authorization": `Bearer ${jwtToken}`,
             },
-            body: JSON.stringify(deviceData), // Envoi de l'objet JSON
+            body: JSON.stringify(deviceData),
         });
 
         if (!response.ok) {
@@ -130,7 +126,6 @@ export async function updateDevice(id: string, device: UpdateDeviceModel): Promi
     }
 }
 
-// Fonction pour convertir une image en base64
 const convertToBase64 = (file: File): Promise<string> => {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();

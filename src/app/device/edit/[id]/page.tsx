@@ -58,7 +58,7 @@ export default function EditMachine() {
                 name,
                 location,
                 isFavorite,
-                image: image ? URL.createObjectURL(image) : imagePreview,
+                image: image ?? undefined,
             };
 
             const updatedDevice = await updateDevice(id as string, updatedDeviceData);

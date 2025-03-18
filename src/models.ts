@@ -18,7 +18,7 @@ export interface CreateDeviceModel {
 
 export interface UpdateDeviceModel {
     name: string;
-    image: File;
+    image?: File;
     location: string;
     isFavorite: boolean;
 }

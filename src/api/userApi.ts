@@ -67,8 +67,6 @@ export async function updateUser(user: UpdateUserModel): Promise<User> {
         throw new Error("ID utilisateur manquant. Veuillez vous reconnecter.");
     }
 
-    console.log(user)
-
     try {
         const response = await fetch(`http://localhost:3000/api/users/${userId}`, {
             method: "PUT",
@@ -128,7 +126,6 @@ export async function loginUser(email: string, password: string): Promise<string
             throw new Error("Failed to log in");
         }
 
-        // Récupérer les données de la réponse, y compris le token et l'ID utilisateur
         const data = await response.json();
 
         const token = data.token;
